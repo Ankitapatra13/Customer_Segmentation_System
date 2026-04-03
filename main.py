@@ -16,11 +16,11 @@ def main():
     # 2. Preprocess
     df = preprocess_data(df)
 
-    # 3. Save all features 
-    pickle.dump(df_final.columns.tolist(), open("models/all_features.pkl", "wb"))
-
-    # 4. Feature preparation
+    # 3. Feature preparation
     X_scaled, scaler, df_final = prepare_features(df)
+
+    # 4. Save all features 
+    pickle.dump(df_final.columns.tolist(), open("models/all_features.pkl", "wb"))
 
     # 5. Train model
     model, labels = train_model(X_scaled)
