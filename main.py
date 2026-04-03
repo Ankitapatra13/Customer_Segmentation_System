@@ -1,5 +1,5 @@
 import pandas as pd
-
+import pickle
 from src.preprocessing import preprocess_data
 from src.clustering import prepare_features, train_model
 from src.utils import (
@@ -16,23 +16,26 @@ def main():
     # 2. Preprocess
     df = preprocess_data(df)
 
-    # 3. Feature prep
+    # 3. Save all features 
+    pickle.dump(df_final.columns.tolist(), open("models/all_features.pkl", "wb"))
+
+    # 4. Feature preparation
     X_scaled, scaler, df_final = prepare_features(df)
 
-    # 4. Train model
+    # 5. Train model
     model, labels = train_model(X_scaled)
 
-    # 5. Assign clusters
+    # 6. Assign clusters
     df_final["Cluster"] = labels
 
-    # 6. Analysis (using utils)
+    # 7. Analysis 
     print("\nCluster Summary:\n")
     print(get_cluster_summary(df_final))
 
     plot_cluster_counts(df_final)
     plot_income_vs_spending(df_final)
 
-    # 7. Save model
+    # 8. Save model
     save_object(model, "models/kmeans_model.pkl")
     save_object(scaler, "models/scaler.pkl")
 
