@@ -20,6 +20,11 @@ Businesses often struggle to understand diverse customer behavior. This project 
 
 ---
 
+## ⚠️ Note
+- Model trained on key behavioral and demographic features for simplicity and interpretability.
+
+---
+
 ## ⚙️ Project Workflow
 
 ```text
@@ -35,4 +40,5 @@ Cluster Analysis & Visualization
    ↓
 Model Saving
    ↓
-Streamlit Deployment
+Streamlit Deployment 
+```text
