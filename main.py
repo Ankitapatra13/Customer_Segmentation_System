@@ -27,7 +27,8 @@ def main():
 
     # 6. Assign clusters
     df_final["Cluster"] = labels
-
+    summary = get_cluster_summary(df_final)
+    print(summary)
     # 7. Analysis 
     print("\nCluster Summary:\n")
     print(get_cluster_summary(df_final))
