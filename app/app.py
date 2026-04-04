@@ -32,24 +32,24 @@ children = st.sidebar.number_input("Total Children", min_value=0, step=1)
 # ================================
 cluster_info = {
     0: {
-        "name": "👨‍👩‍👧 Family Budget Customers",
-        "insight": "Moderate income, low spending, larger families, older age group",
-        "recommendation": "Offer family bundles, discounts, and value-for-money deals"
+        "Name": "👨‍👩‍👧 Family Budget Customers",
+        "Insight": "Moderate income, low spending, larger families, older age group",
+        "Recommendation": "Offer family bundles, discounts, and value-for-money deals"
     },
     1: {
-        "name": "🛍️ Affluent Senior Customers",
-        "insight": "High income, high spending, older customers with fewer dependents",
-        "recommendation": "Target with premium services, comfort products, and loyalty programs"
+        "Name": "🛍️ Affluent Senior Customers",
+        "Insight": "High income, high spending, older customers with fewer dependents",
+        "Recommendation": "Target with premium services, comfort products, and loyalty programs"
     },
     2: {
-        "name": "💰 Young Budget Customers",
-        "insight": "Low income, low spending, younger demographic with fewer children",
-        "recommendation": "Engage with discounts, entry-level products, and promotional offers"
+        "Name": "💰 Young Budget Customers",
+        "Insight": "Low income, low spending, younger demographic with fewer children",
+        "Recommendation": "Engage with discounts, entry-level products, and promotional offers"
     },
     3: {
-        "name": "💎 Premium High-Value Customers",
-        "insight": "Very high income and extremely high spending with minimal family burden",
-        "recommendation": "Provide VIP experiences, exclusive deals, and personalized services"
+        "Name": "💎 Premium High-Value Customers",
+        "Insight": "Very high income and extremely high spending with minimal family burden",
+        "Recommendation": "Provide VIP experiences, exclusive deals, and personalized services"
     }
 }
 # ================================
@@ -67,13 +67,10 @@ if st.button("Predict Customer Segment"):
         "TotalChildren": children
     }
 
-    # Fill known values
+    # Fill values
     for col in input_dict:
         if col in input_df.columns:
             input_df.loc[0, col] = input_dict[col]
-
-    # Handle missing columns
-    input_df = input_df.fillna(0)
 
     # Scale input
     data_scaled = scaler.transform(input_df)
@@ -92,3 +89,4 @@ if st.button("Predict Customer Segment"):
     st.markdown(f"### Segment: {info['Name']}")
     st.write(f"**Insight:** {info['Insight']}")
     st.write(f"**Recommendation:** {info['Recommendation']}")
+    
