@@ -3,23 +3,18 @@ from sklearn.cluster import KMeans
 import pandas as pd
 
 def prepare_features(df):
-    cat_cols = ["Education", "LivingWith"]
 
-    ohe = OneHotEncoder(sparse_output=False)
-    encoded = ohe.fit_transform(df[cat_cols])
+    # using only selected features (App input = Model training features)
+    selected_features = ["Income", "TotalSpending", "Age", "TotalChildren"]
 
-    encoded_df = pd.DataFrame(
-        encoded,
-        columns=ohe.get_feature_names_out(cat_cols),
-        index=df.index
-    )
+    df_final = df[selected_features].copy()
 
-    df = pd.concat([df.drop(columns=cat_cols), encoded_df], axis=1)
-
+    from sklearn.preprocessing import StandardScaler
     scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(df)
 
-    return X_scaled, scaler, df
+    X_scaled = scaler.fit_transform(df_final)
+
+    return X_scaled, scaler, df_final
 
 
 def train_model(X_scaled, n_clusters=4):
