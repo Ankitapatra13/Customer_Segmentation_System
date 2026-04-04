@@ -4,29 +4,61 @@ import sys
 import os
 import pandas as pd
 
-# Fix import path
+# import path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from src.utils import load_object
 
-# Load model and scaler
+# Load model 
 model = load_object("models/kmeans_model.pkl")
 scaler = load_object("models/scaler.pkl")
 features = load_object("models/all_features.pkl")
 
-# UI
+# ================================
+# 🎯 UI
+# ================================
 st.title("🛒 Customer Segmentation System")
-st.subheader("🔮 Predict customer segments using machine learning")
+st.markdown("### 🎯 Get actionable customer insights instantly")
 
-# Inputs
-income = st.number_input("Income", min_value=0.0)
-spending = st.number_input("Total Spending", min_value=0.0)
-age = st.number_input("Age", min_value=0.0)
-children = st.number_input("Total Children", min_value=0.0)
+st.sidebar.header("Enter Customer Details")
 
-if st.button("Predict"):
+income = st.sidebar.number_input("Income", min_value=0.0)
+spending = st.sidebar.number_input("Total Spending", min_value=0.0)
+age = st.sidebar.number_input("Age", min_value=0, step=1)
+children = st.sidebar.number_input("Total Children", min_value=0, step=1)
 
-    # Create full feature dataframe
+# ================================
+# 🧠 CLUSTER DEFINITIONS 
+# ================================
+cluster_info = {
+    0: {
+        "Name": "💰 Budget Individuals",
+        "Insight": "Low income, low spending, mostly living alone",
+        "Recommendation": "Offer discounts, coupons, and entry-level products to increase engagement."
+    },
+    1: {
+        "Name": "👨‍👩‍👧 Family Customers",
+        "Insight": "Low income but partnered households with moderate engagement",
+        "Recommendation": "Provide bundle offers and family-oriented promotions."
+    },
+    2: {
+        "Name": "🛍️ Active Shoppers",
+        "Insight": "Moderate income with high purchasing activity and frequent online shopping, mostly living with partner",
+        "Recommendation": "Target with personalized recommendations and loyalty rewards."
+    },
+    3: {
+        "Name": "💎 High Value Customers",
+        "Insight": "High income customers with high spending, mostly living with partners",
+        "Recommendation": "Offer premium services, trending exclusive deals, and VIP loyalty programs."
+    }
+}
+
+# ================================
+# 🔮 PREDICTION
+# ================================
+if st.button("Predict Customer Segment"):
+
+    # full feature dataframe
     input_df = pd.DataFrame(columns=features)
 
     input_dict = {
@@ -41,13 +73,23 @@ if st.button("Predict"):
         if col in input_df.columns:
             input_df.loc[0, col] = input_dict[col]
 
-    # Fill remaining columns
+    # Handle missing columns
     input_df = input_df.fillna(0)
 
-    # Scale FULL dataframe
+    # Scale input
     data_scaled = scaler.transform(input_df)
 
-    # Predict
+    # Predict cluster
     cluster = model.predict(data_scaled)[0]
 
-    st.success(f"Customer belongs to Cluster {cluster}")
+    # Get cluster info
+    info = cluster_info.get(cluster)
+
+    # ================================
+    # 📊 OUTPUT
+    # ================================
+    st.subheader("📊 Prediction Result")
+
+    st.markdown(f"### Segment: {info['Name']}")
+    st.write(f"**Insight:** {info['Insight']}")
+    st.write(f"**Recommendation:** {info['Recommendation']}")
