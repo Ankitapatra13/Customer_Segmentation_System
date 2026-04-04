@@ -32,27 +32,26 @@ children = st.sidebar.number_input("Total Children", min_value=0, step=1)
 # ================================
 cluster_info = {
     0: {
-        "Name": "💰 Budget Individuals",
-        "Insight": "Low income, low spending, mostly living alone",
-        "Recommendation": "Offer discounts, coupons, and entry-level products to increase engagement."
+        "name": "👨‍👩‍👧 Family Budget Customers",
+        "insight": "Moderate income, low spending, larger families, older age group",
+        "recommendation": "Offer family bundles, discounts, and value-for-money deals"
     },
     1: {
-        "Name": "👨‍👩‍👧 Family Customers",
-        "Insight": "Low income but partnered households with moderate engagement",
-        "Recommendation": "Provide bundle offers and family-oriented promotions."
+        "name": "🛍️ Affluent Senior Customers",
+        "insight": "High income, high spending, older customers with fewer dependents",
+        "recommendation": "Target with premium services, comfort products, and loyalty programs"
     },
     2: {
-        "Name": "🛍️ Active Shoppers",
-        "Insight": "Moderate income with high purchasing activity and frequent online shopping, mostly living with partner",
-        "Recommendation": "Target with personalized recommendations and loyalty rewards."
+        "name": "💰 Young Budget Customers",
+        "insight": "Low income, low spending, younger demographic with fewer children",
+        "recommendation": "Engage with discounts, entry-level products, and promotional offers"
     },
     3: {
-        "Name": "💎 High Value Customers",
-        "Insight": "High income customers with high spending, mostly living with partners",
-        "Recommendation": "Offer premium services, trending exclusive deals, and VIP loyalty programs."
+        "name": "💎 Premium High-Value Customers",
+        "insight": "Very high income and extremely high spending with minimal family burden",
+        "recommendation": "Provide VIP experiences, exclusive deals, and personalized services"
     }
 }
-
 # ================================
 # 🔮 PREDICTION
 # ================================
