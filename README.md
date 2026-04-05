@@ -25,6 +25,14 @@ Businesses often struggle to understand diverse customer behavior. This project 
 
 ---
 
+## 📊 Evaluation
+
+- Evaluated clustering performance using the **Elbow Method** to determine the optimal number of clusters. 
+- Used **Silhouette Score** to measure cluster cohesion and separation.
+- Combined quantitative evaluation with **cluster summary analysis** to ensure meaningful and interpretable customer segments.
+
+---
+
 ## ⚙️ Project Workflow
 
 ```text
