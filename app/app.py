@@ -96,7 +96,7 @@ if st.button("Predict Customer Segment"):
     st.write(f"**Spending:**{spending}")
 
     # Load dataset for visualization
-    df = pd.read_csv("data/smartcart_customers.csv")
+    df = pd.read_csv("models/preprocessed_data.csv")
     df = df[["Income", "TotalSpending"]]
 
     fig, ax = plt.subplots()
