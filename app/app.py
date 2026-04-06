@@ -3,6 +3,8 @@ import numpy as np
 import sys
 import os
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 # import path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -89,4 +91,26 @@ if st.button("Predict Customer Segment"):
     st.markdown(f"### Segment: {info['Name']}")
     st.write(f"**Insight:** {info['Insight']}")
     st.write(f"**Recommendation:** {info['Recommendation']}")
-    
+    st.subheader("📍Position in market")
+    st.write(f"**Income:** {income}")
+    st.write(f"**Spending:**{spending}")
+
+    # Load dataset for visualization
+    df = pd.read_csv("data/smartcart_customers.csv")
+    df = df[["Income", "TotalSpending"]]
+
+    fig, ax = plt.subplots()
+
+    ax.scatter(df["Income"], df["TotalSpending"], alpha=0.3)
+    ax.scatter(income, spending, marker="X", s=200 , color="red")  # user point
+
+    ax.set_xlabel("Income")
+    ax.set_ylabel("Total Spending")
+    ax.set_title("Customer Distribution")
+
+    st.pyplot(fig) 
+
+    ### adding cluster summary
+    summary = pd.read_csv("models/cluster_summary.csv")
+    st.subheader("📊 Cluster Overview")
+    st.dataframe(summary)
