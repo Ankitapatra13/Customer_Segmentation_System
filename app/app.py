@@ -8,7 +8,6 @@ import matplotlib.pyplot as plt
 
 # import path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 from src.utils import load_object
 
 # Load model 
@@ -87,27 +86,23 @@ if st.button("Predict Customer Segment"):
     # 📊 OUTPUT
     # ================================
     st.subheader("📊 Prediction Result")
-
     st.markdown(f"### Segment: {info['Name']}")
     st.write(f"**Insight:** {info['Insight']}")
     st.write(f"**Recommendation:** {info['Recommendation']}")
     st.subheader("📍Position in market")
     st.write(f"**Income:** {income}")
-    st.write(f"**Spending:**{spending}")
+    st.write(f"**Spending:** {spending}")
 
     # Load dataset for visualization
     df = pd.read_csv("models/preprocessed_data.csv")
     df = df[["Income", "TotalSpending"]]
 
     fig, ax = plt.subplots()
-
-    ax.scatter(df["Income"], df["TotalSpending"], alpha=0.3)
+    ax.scatter(df["Income"], df["TotalSpending"], c=df["Cluster"], cmap="tab10", alpha=0.6)
     ax.scatter(income, spending, marker="X", s=200 , color="red")  # user point
-
     ax.set_xlabel("Income")
     ax.set_ylabel("Total Spending")
     ax.set_title("Customer Distribution")
-
     st.pyplot(fig) 
 
     ### adding cluster summary
