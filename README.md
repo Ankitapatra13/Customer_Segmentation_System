@@ -49,3 +49,29 @@ Cluster Analysis & Visualization
 Model Saving
    ↓
 Streamlit Deployment 
+
+```
+## 📷 Application Screenshots
+
+### 🏠 Home Interface
+<p align="center">
+<img src="C:\Users\HOME\Desktop\customer_segmentation\Customer_Segmentation_System\images\UI.png" width="700">
+</p>
+
+### 🔮 Prediction
+<p align="center">
+<img src="C:\Users\HOME\Desktop\customer_segmentation\Customer_Segmentation_System\images\Prediction.png" width="700">
+</p>
+
+### 📊 Customer Segment Visualization
+<p align="center">
+<img src="C:\Users\HOME\Desktop\customer_segmentation\Customer_Segmentation_System\images\Visualization.png" width="700">
+</p>
+
+### 👥 Customer Segment Summary
+<p align="center">
+<img src="C:\Users\HOME\Desktop\customer_segmentation\Customer_Segmentation_System\images\Cluster_Summary.png" width="700">
+</p>
+
+
+
