@@ -99,7 +99,7 @@ if st.button("Predict Customer Segment"):
     fig, ax = plt.subplots()
     scatter = ax.scatter(df["Income"], df["TotalSpending"], c=df["Cluster"], cmap="viridis", alpha=0.5)
     ### cluster legend
-    legend1 = ax.legend(*scatter.legend_elements(),title="Clusters")
+    legend1 = ax.legend(*scatter.legend_elements(),title="Clusters",loc="upper left")
     ax.add_artist(legend1)
      
     ### curr customer point 
