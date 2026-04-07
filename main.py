@@ -16,9 +16,8 @@ def main():
     model_path = "models/kmeans_model.pkl"
     scaler_path = "models/scaler.pkl"
     features_path = "models/all_features.pkl"
-    ## adding cluster summarys into models folder 
     cluster_path = "models/cluster_summary.csv"
-    final_data_path = "models/preprocessed_data.csv"
+    clustered_data_path = "models/clustered_data.csv"
 
     # Create models folder if not exists
     os.makedirs("models", exist_ok=True)
@@ -44,7 +43,7 @@ def main():
 
         # 6. Assign clusters
         df_final["Cluster"] = labels
-
+        
         # 7. Cluster summary
         print("\n📊 Cluster Summary:\n")
         summary = get_cluster_summary(df_final)
@@ -58,7 +57,8 @@ def main():
         save_object(model, model_path)
         save_object(scaler, scaler_path)
         summary.to_csv(cluster_path,index=True)
-        df_final.to_csv(final_data_path,index=False)
+        df_final.to_csv(clustered_data_path,index=False)
+
 
         print("\n✅ Project pipeline completed successfully!")
 
