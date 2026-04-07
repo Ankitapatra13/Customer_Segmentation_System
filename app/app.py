@@ -97,8 +97,8 @@ if st.button("Predict Customer Segment"):
     df = df[["Income", "TotalSpending","Cluster"]]
 
     fig, ax = plt.subplots()
-    ax.scatter(df["Income"], df["TotalSpending"], c=df["Cluster"], cmap="tab10", alpha=0.6)
-    ax.scatter(income, spending, marker="X", s=200 , color="red")  # curr customer point
+    ax.scatter(df["Income"], df["TotalSpending"], c=df["Cluster"], cmap="viridis", alpha=0.5)
+    ax.scatter(income, spending, marker="X", s=200 , color="black")  # curr customer point
     ax.set_xlabel("Income")
     ax.set_ylabel("Total Spending")
     ax.set_title("Customer Distribution")
