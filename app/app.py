@@ -22,7 +22,6 @@ st.title("🛒 Customer Segmentation System")
 st.markdown("### 🎯 Get actionable customer insights instantly")
 
 st.sidebar.header("Enter Customer Details")
-
 income = st.sidebar.number_input("Income", min_value=0.0)
 spending = st.sidebar.number_input("Total Spending", min_value=0.0)
 age = st.sidebar.number_input("Age", min_value=0, step=1)
@@ -94,12 +93,12 @@ if st.button("Predict Customer Segment"):
     st.write(f"**Spending:** {spending}")
 
     # Load dataset for visualization
-    df = pd.read_csv("models/preprocessed_data.csv")
-    df = df[["Income", "TotalSpending"]]
+    df = pd.read_csv("models/clustered_data.csv")
+    df = df[["Income", "TotalSpending","Cluster"]]
 
     fig, ax = plt.subplots()
     ax.scatter(df["Income"], df["TotalSpending"], c=df["Cluster"], cmap="tab10", alpha=0.6)
-    ax.scatter(income, spending, marker="X", s=200 , color="red")  # user point
+    ax.scatter(income, spending, marker="X", s=200 , color="red")  # curr customer point
     ax.set_xlabel("Income")
     ax.set_ylabel("Total Spending")
     ax.set_title("Customer Distribution")
